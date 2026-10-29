@@ -2,7 +2,15 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#163a4a">
+<meta name="theme-color" content="#103d49">
+<meta name="description" content="دفتر کار اپراتور صوت؛ ثبت برنامه‌ها، مدیریت پرداخت‌ها و گزارش مالی">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="دفتر اپراتور">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="apple-touch-icon" href="./icons/icon-192.png">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap');
 :root{font-family:Vazirmatn,Tahoma,sans-serif;color:#172b35;background:#f4f7f8;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:11px 15px;background:#176b75;color:#fff;font-weight:600}button:hover{filter:brightness(.96)}button:disabled{opacity:.45;cursor:not-allowed}.top{background:#163a4a;color:white;padding:20px max(18px,calc((100% - 1100px)/2));display:flex;align-items:center;justify-content:space-between;gap:16px}.top h1{font-size:22px;margin:3px 0}.top-actions{justify-content:flex-end}.top small{opacity:.8}.light{background:#fff;color:#163a4a}.nav{display:flex;gap:8px;padding:12px max(12px,calc((100% - 1100px)/2));background:#fff;overflow:auto;border-bottom:1px solid #e0e8eb}.nav button{background:transparent;color:#49616a;white-space:nowrap}.nav button.active{background:#e1f1f1;color:#12565e}.wrap{max-width:1100px;margin:24px auto;padding:0 16px 50px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.card{background:white;border:1px solid #e3eaed;border-radius:18px;padding:18px;box-shadow:0 3px 12px #15384408;margin-bottom:14px}.stat{min-height:108px}.stat span{font-size:13px;color:#657982}.stat strong{display:block;font-size:23px;margin-top:9px;color:#153f4a;overflow-wrap:anywhere}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.row>*{flex:1}.row .fit{flex:0 0 auto}.section-title{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:5px 0 14px}.section-title h2{font-size:19px;margin:0}.muted{color:#6b7e86;font-size:13px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:13px;color:#526872}.field input,.field select,.field textarea,.search{width:100%;padding:11px 12px;border:1px solid #d7e1e5;border-radius:11px;background:#fff;color:#182d36;min-width:0}.field textarea{min-height:80px;resize:vertical}.wide{grid-column:1/-1}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.secondary{background:#e8f1f3;color:#21434e}.danger{background:#a53c43}.warning{background:#fff3d8;color:#76520c}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:650px}th,td{text-align:right;padding:12px 10px;border-bottom:1px solid #edf1f2;font-size:13px}th{color:#607780;background:#f8fafb;white-space:nowrap}.pill{display:inline-block;padding:4px 8px;border-radius:20px;background:#edf2f3;font-size:12px}.paid{background:#dff4e8;color:#1b7044}.partial{background:#fff0d5;color:#875b0a}.unpaid{background:#ffe5e5;color:#9d3030}.empty{padding:25px;text-align:center;color:#72848b}.toast{position:fixed;bottom:18px;left:18px;right:18px;max-width:500px;margin:auto;background:#163a4a;color:#fff;padding:12px 16px;border-radius:12px;display:none;z-index:20;box-shadow:0 5px 20px #0002}.toast.show{display:block}.hint{padding:12px;border-radius:12px;background:#fff7df;color:#70561c;font-size:13px;line-height:1.9}.smallbtn{padding:7px 10px;font-size:12px}.balance{font-weight:800;color:#a23c3c}.modalback{position:fixed;inset:0;background:#10263080;display:flex;align-items:center;justify-content:center;padding:16px;z-index:10}.modal{background:white;border-radius:18px;max-width:680px;width:100%;max-height:90vh;overflow:auto;padding:20px}.hidden{display:none!important}.daylabel{color:#607780;font-size:13px}@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wrap{margin:14px auto}.top{padding:16px}.formgrid{grid-template-columns:1fr}.wide{grid-column:auto}.top h1{font-size:19px}.stat strong{font-size:20px}.card{padding:14px}}@media(max-width:390px){.grid{grid-template-columns:1fr 1fr}.stat strong{font-size:18px}.top{align-items:flex-start;flex-direction:column}}/* Mobile-first quick-entry layout and Jalali calendar */
@@ -251,5 +259,14 @@ $('#homeBrand').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){
 $('#importFile').onchange=e=>{if(e.target.files[0])importBackup(e.target.files[0]);e.target.value=''};
 (async()=>{let d=await load();if(d){state.jobs=Array.isArray(d.jobs)?d.jobs:[];state.receipts=Array.isArray(d.receipts)?d.receipts:[];state.settings={...state.settings,...d.settings}}render()})();
 })();
+</script>
+
+<script>
+// PWA: enables offline loading and installation when served over HTTPS (e.g. GitHub Pages).
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register(new URL('./sw.js', document.baseURI)).catch(() => {});
+  });
+}
 </script>
 </body></html>

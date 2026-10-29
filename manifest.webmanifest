@@ -1,0 +1,33 @@
+{
+  "id": "./",
+  "name": "دفتر کار اپراتور صوت",
+  "short_name": "دفتر اپراتور",
+  "description": "ثبت برنامه‌ها، مدیریت پرداخت‌ها و گزارش مالی اپراتور صوت",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f1f5f4",
+  "theme_color": "#103d49",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
